@@ -16,7 +16,6 @@ export default function Post() {
     async () => {
       setCall(false)
 
-
       const res = await fetch('/api/create_villa', {
         method: 'POST',
         headers: {
@@ -35,7 +34,6 @@ export default function Post() {
         setShow('block')
         Router.push('/');
         console.log('status 200')
-
       }
     }, []
   )
