@@ -38,8 +38,6 @@ export default function Home() {
     return <div style={{color:'red', marginTop:20}}>{errorText}</div>
   }
 
-
-
   return (
 
     <div className={Style.container} >

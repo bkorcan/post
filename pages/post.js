@@ -15,31 +15,27 @@ export default function Post() {
   useEffect(
     async () => {
       setCall(false)
-      try {
-        const res = await fetch('/api/create_villa', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ id: id, name: name, price: price }),
-        });
 
-        if (res.status === 500) {
 
-          setErrorText(JSON.stringify(await res.text()))
-        }
+      const res = await fetch('/api/create_villa', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: id, name: name, price: price }),
+      });
 
-        if (res.status === 200) {
-          setShow('block')
-          Router.push('/');
-          console.log('status 200')
-
-        } else {
-          throw new Error(await res.text());
-        }
-
-      } catch (error) {
+      if (res.status === 500) {
         setShow('block')
+        setErrorText(JSON.stringify(await res.text()))
+        Router.push('/');
+      }
+
+      if (res.status === 200) {
+        setShow('block')
+        Router.push('/');
+        console.log('status 200')
+
       }
     }, []
   )
