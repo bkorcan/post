@@ -30,8 +30,8 @@ export default function Post() {
         }
 
         if (res.status === 200) {
-          Router.push('/');
           setShow('block')
+          Router.push('/');
           console.log('status 200')
 
         } else {

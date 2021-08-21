@@ -1,6 +1,8 @@
 import { useStore } from '../components/state'
 import { useRef } from 'react';
 import Post from './post';
+import Style from '../styles/post.module.css'
+
 
 export default function Home() {
 
@@ -40,20 +42,15 @@ export default function Home() {
 
   return (
 
-    <div style={{ width: 300, margin: '0 auto', backgroundColor: '#fafafa', textAlign: 'center', padding: 10 }} >
+    <div className={Style.container} >
       <h3>Create Villa</h3>
-      {/* <span style={{color:'red'}} >{erorText}</span> */}
-      <input ref={node1} type='number' size='6' style={{ fontSize: 17, lineHeight: 1.4 }} placeholder='Villa Id' />
-      <br></br>
-      <br></br>
-      <input ref={node2} type='text' size='6' style={{ fontSize: 17, lineHeight: 1.4 }} placeholder='Villa Name' />
-      <br></br>
-      <br></br>
-      <input ref={node3} type='number' size='6' style={{ fontSize: 17, lineHeight: 1.4 }} placeholder='Price' />
-      <br></br>
-      <br></br>
+      <input ref={node1} type='number' size='6'  placeholder='Villa Id' className={Style.input} />
+      
+      <input ref={node2} type='text' size='6' className={Style.input} placeholder='Villa Name' />
+      
+      <input ref={node3} type='number' size='6' className={Style.input} placeholder='Price' />
 
-      <button style={{ marginLeft: 90, fontSize: 20, lineHeight: 1.4, backgroundColor: '#fff', padding: '5px 20px', display: show }} onClick={handleClick} >Create</button>
+      <button style={{ display: show }} onClick={handleClick}  className={Style.submit} >Create</button>
       {
         call ? <Post/> : <ErrorCall/>
       }
