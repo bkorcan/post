@@ -1,0 +1,93 @@
+ // Create dates document by Ref -Sample
+
+Map(
+  [
+    [ "10110712", {id:'101', name: Ref(Collection("villas"), "101"), date: "10712" } ],
+    [ "10110713", {id:'101', name: Ref(Collection("villas"), "101"), date: "10713" } ],
+    [ "10110714", {id:'101', name: Ref(Collection("villas"), "101"), date: "10714" } ],
+    [ "10110715", {id:'101', name: Ref(Collection("villas"), "101"), date: "10715" } ],
+    [ "10110716", {id:'101', name: Ref(Collection("villas"), "101"), date: "10716" } ],
+    [ "10110717", {id:'101', name: Ref(Collection("villas"), "101"), date: "10717" } ],
+  ],
+  Lambda(
+    ["id", "data"],
+    Create(Ref(Collection("dates"), Var("id")), { data: Var("data") })
+  )
+)
+
+
+Create(
+    Ref(
+         Collection(
+                     ('dates'),  '10110711'), 
+                     data:{  
+                       id: '101',
+                       name:Ref( Collection('villas'), '101'),
+                       date: '10711'
+                       )
+                       
+                     }
+    )
+   )
+  )
+ // Create dates document by Ref -Sample
+
+
+Map(
+  [
+    [ "2012", { villa: Ref(Collection("villas"), "5"), date: "1513" } ],
+  ],
+  Lambda(
+    ["id", "data"],
+    Create(Ref(Collection("dates"), Var("id")), { data: Var("data") })
+  )
+)
+
+
+
+
+
+
+Difference(Select( 'data', Paginate( Match('all_villas') )  ), Union( Map(["179","1710"], Lambda("x", Select("data", Paginate(Match("villas_by_date", Var("x") )) ))) ))
+179
+1 5 8 17 28
+
+
+1710
+1 5 8 13 17 28
+
+1 5 8 13 17 28
+
+
+
+Take(
+  5,
+  Drop(
+    5,
+    Map(
+      Difference(
+        Select("data", Paginate(Match("all_villas"))),
+        Union(
+          Map(
+            ["179", "1710"],
+            Lambda(
+              "x",
+              Select("data", Paginate(Match("villas_by_date", Var("x"))))
+            )
+          )
+        )
+      ),
+      Lambda("x", Get(Var("x")))
+    )
+  )
+)
+
+
+Select('data',
+Paginate(
+  Match(
+    'get_dates_by_villa', '102'
+    )
+ )
+)
+

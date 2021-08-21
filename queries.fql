@@ -1,0 +1,11 @@
+// db:test collection:villa  secret
+Create(
+  Ref( 
+    
+    Collection('villa'), '2' 
+       
+    ), 
+    
+    { data:{ name: "villa-2", price: "120" } }
+    
+  )
